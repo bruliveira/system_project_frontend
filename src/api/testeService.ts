@@ -3,9 +3,8 @@ export interface TesteResponse {
 }
 
 export const fetchTesteMensagem = async (): Promise<TesteResponse> => {
-  // Em produção, usa a URL completa do SEU backend no Render
   const endpoint = import.meta.env.MODE === 'production'
-    ? 'https://onrender.com'
+    ? 'https://system-project-aihq.onrender.com/api/Teste'
     : '/api/Teste';
 
   const response = await fetch(endpoint);
