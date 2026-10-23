@@ -3,7 +3,11 @@ export interface TesteResponse {
 }
 
 export const fetchTesteMensagem = async (): Promise<TesteResponse> => {
-  const response = await fetch('/api/Teste');
+  const endpoint = import.meta.env.MODE === 'production'
+    ? 'https://onrender.com'
+    : '/api/Teste';
+
+  const response = await fetch(endpoint);
   
   if (!response.ok) {
     throw new Error('Erro ao buscar dados da API de Teste');
