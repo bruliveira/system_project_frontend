@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://system-project-aihq.onrender.com/api/:path*"
+      "destination": "https://system-project-backend.onrender.com/api/:path*"
     }
   ]
 }

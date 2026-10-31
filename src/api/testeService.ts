@@ -4,7 +4,7 @@ export interface TesteResponse {
 
 export const fetchTesteMensagem = async (): Promise<TesteResponse> => {
   const endpoint = import.meta.env.MODE === 'production'
-    ? 'https://system-project-aihq.onrender.com/api/Teste'
+    ? 'https://system-project-backend.onrender.com/api/Teste'
     : '/api/Teste';
 
   const response = await fetch(endpoint);
