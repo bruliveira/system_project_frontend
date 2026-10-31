@@ -2,4 +2,8 @@
 @tailwindcss components;
 @tailwindcss utilities;
 
+body {
+  font-family: Nunito, sans-serif;
+}
+
 

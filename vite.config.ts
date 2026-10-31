@@ -6,11 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      // Toda vez que o React chamar '/api', o Vite joga para o Render
+      // Só vale no npm run dev. O deploy usa o vercel.json, que aponta para o Render.
       '/api': {
-        target: 'https://system-project-aihq.onrender.com',
+        target: 'http://localhost:5282',
         changeOrigin: true,
-        secure: true,
+        secure: false,
       }
     }
   }

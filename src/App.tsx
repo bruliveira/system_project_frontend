@@ -6,9 +6,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Aqui garantimos que a Home (que tem o hook) seja a tela inicial */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/painel" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

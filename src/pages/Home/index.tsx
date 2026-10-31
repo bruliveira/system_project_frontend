@@ -1,39 +1,43 @@
-import { useTeste } from '../../hooks/useTeste';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import type { UsuarioSessao } from '../../api/usuarios';
 
 export default function Home() {
-  const { dados, carregando, erro } = useTeste();
+  const navigate = useNavigate();
+  const [usuario, setUsuario] = useState<UsuarioSessao | null>(null);
+
+  useEffect(() => {
+    const salvo = sessionStorage.getItem('usuario');
+    if (!salvo) {
+      navigate('/');
+      return;
+    }
+
+    setUsuario(JSON.parse(salvo) as UsuarioSessao);
+  }, [navigate]);
+
+  const sair = () => {
+    sessionStorage.removeItem('usuario');
+    navigate('/');
+  };
+
+  if (!usuario) return null;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 p-6">
-      <div className="max-w-md w-full bg-slate-900/60 backdrop-blur-md rounded-3xl shadow-2xl p-8 text-center border border-slate-800">
-        
-        <div className="inline-flex items-center justify-center p-4 bg-indigo-500/10 rounded-2xl text-indigo-400 mb-6 border border-indigo-500/20">
-          <span className="text-3xl">✨</span>
-        </div>
-        
-
-        {/* Bloco de conexão com o Backend */}
-        <div className="bg-slate-950/60 rounded-2xl p-4 mb-8 border border-slate-800">
-          <p className="text-[10px] uppercase font-bold text-slate-500 tracking-widest mb-1.5">
-            Status do Backend
-          </p>
-          
-          {carregando ? (
-            <div className="flex items-center justify-center gap-2 text-sm text-slate-400 py-1">
-              <div className="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></div>
-              <span>Buscando dados da API...</span>
-            </div>
-          ) : erro ? (
-            <p className="text-sm text-red-400 font-medium py-1">
-              ⚠️ Erro: {erro}
-            </p>
-          ) : (
-            <p className="text-base font-semibold text-emerald-400 py-1">
-              👋 API diz: <span className="text-indigo-300 font-mono">"{dados?.mensagem}"</span>
-            </p>
-          )}
-        </div>
-
+    <div className="flex min-h-screen items-center justify-center bg-[#f6f7f4] p-6">
+      <div className="w-full max-w-md rounded-[28px] bg-white p-8 text-center shadow-[0_18px_50px_rgba(20,40,30,0.08)]">
+        <p className="text-sm font-semibold uppercase tracking-wider text-[#178a3e]">Planalto Balneário</p>
+        <h1 className="mt-3 text-2xl font-extrabold text-[#163828]">Olá, {usuario.nome}</h1>
+        <p className="mt-2 text-sm text-[#7b8b82]">
+          Você entrou como {usuario.login} ({usuario.perfil}).
+        </p>
+        <button
+          type="button"
+          onClick={sair}
+          className="mt-8 w-full rounded-full bg-[#178a3e] py-3 text-sm font-bold text-white"
+        >
+          Sair
+        </button>
       </div>
     </div>
   );
