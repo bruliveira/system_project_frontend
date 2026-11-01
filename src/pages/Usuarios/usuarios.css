@@ -1,0 +1,172 @@
+.usuarios-ferramentas {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.usuarios-busca,
+.usuarios-ferramentas select,
+.usuario-form input,
+.usuario-form select {
+  border: 1px solid #e3e8e4;
+  border-radius: 12px;
+  background: #fff;
+  padding: 12px 14px;
+  color: #1d2b22;
+  font: inherit;
+  font-weight: 700;
+  outline: none;
+}
+
+.usuarios-busca {
+  flex: 1;
+}
+
+.usuarios-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.usuarios-tabela th {
+  padding: 12px 10px;
+  color: #8b9890;
+  font-size: 0.82rem;
+  text-align: left;
+}
+
+.usuarios-tabela td {
+  border-top: 1px solid #eef2ef;
+  padding: 14px 10px;
+  font-weight: 700;
+}
+
+.usuario-pessoa {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.usuario-iniciais {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7f6ec;
+  color: #178a3e;
+  font-size: 0.75rem;
+}
+
+.tipo {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+}
+
+.tipo.admin {
+  background: #ece7ff;
+  color: #6d4aff;
+}
+
+.tipo.atendente {
+  background: #e7f8ee;
+  color: #178a3e;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.acoes button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.usuarios-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  color: #8b9890;
+  font-weight: 700;
+}
+
+.paginas {
+  display: flex;
+  gap: 8px;
+}
+
+.paginas button {
+  border: 1px solid #e3e8e4;
+  border-radius: 10px;
+  background: #fff;
+  min-width: 36px;
+  padding: 8px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.paginas button.ativa {
+  border-color: #ff9a1f;
+  background: #ff9a1f;
+  color: #fff;
+}
+
+.usuarios-aviso {
+  color: #c24141;
+  font-weight: 800;
+}
+
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  background: rgba(16, 40, 24, 0.35);
+  padding: 16px;
+}
+
+.usuario-form {
+  width: min(420px, 100%);
+  border-radius: 24px;
+  background: #fff;
+  padding: 24px;
+}
+
+.usuario-form h2 {
+  margin: 0 0 16px;
+  color: #146c36;
+}
+
+.usuario-form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 800;
+}
+
+.usuario-form input,
+.usuario-form select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.usuario-form .botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.usuario-form .cancelar {
+  border: 0;
+  background: transparent;
+  color: #607068;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}

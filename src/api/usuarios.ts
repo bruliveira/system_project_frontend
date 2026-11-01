@@ -5,6 +5,21 @@ export interface UsuarioSessao {
   perfil: string;
 }
 
+export interface NovoUsuario {
+  nome: string;
+  login: string;
+  senha: string;
+  perfil: string;
+}
+
+async function lerResposta(response: Response) {
+  const body = await response.json().catch(() => null);
+  if (!response.ok) {
+    throw new Error(body?.mensagem ?? 'Não foi possível concluir a operação.');
+  }
+  return body;
+}
+
 export const entrar = async (login: string, senha: string): Promise<UsuarioSessao> => {
   const response = await fetch('/api/Usuarios/login', {
     method: 'POST',
@@ -12,11 +27,25 @@ export const entrar = async (login: string, senha: string): Promise<UsuarioSessa
     body: JSON.stringify({ login, senha }),
   });
 
-  const body = await response.json().catch(() => null);
+  return lerResposta(response) as Promise<UsuarioSessao>;
+};
 
-  if (!response.ok) {
-    throw new Error(body?.mensagem ?? 'Não foi possível entrar.');
-  }
+export const listarUsuarios = async (): Promise<UsuarioSessao[]> => {
+  const response = await fetch('/api/Usuarios');
+  return lerResposta(response) as Promise<UsuarioSessao[]>;
+};
 
-  return body as UsuarioSessao;
+export const criarUsuario = async (dados: NovoUsuario): Promise<UsuarioSessao> => {
+  const response = await fetch('/api/Usuarios', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados),
+  });
+  return lerResposta(response) as Promise<UsuarioSessao>;
+};
+
+export const excluirUsuario = async (id: number): Promise<void> => {
+  const response = await fetch(`/api/Usuarios/${id}`, { method: 'DELETE' });
+  if (response.status === 204) return;
+  await lerResposta(response);
 };
